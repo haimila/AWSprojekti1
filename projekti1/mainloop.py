@@ -1,4 +1,4 @@
-from projekti1.robot import
+from projekti1.robot import dancenumberone
 while True:
 
     print("Welcome to the Party Bot!")
@@ -11,7 +11,7 @@ while True:
     userchoice = input("Make your selection: ")
 
     if userchoice == "1":
-        print("PÖÖ")
+        dancenumberone()
         continue
 
     elif userchoice == "2":
