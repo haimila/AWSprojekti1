@@ -13,8 +13,6 @@ m.on_for_rotations(SpeedPercent(75), 5)
 
 tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
 
-def dancenumberone():
-
     def soundbyte():
         sound.tone([
             (392, 350, 100), (392, 350, 100), (392, 350, 100), (311.1, 250, 100),
