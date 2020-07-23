@@ -2,8 +2,6 @@
 from ev3dev2.motor import LargeMotor, OUTPUT_B, OUTPUT_C, SpeedPercent, MoveTank
 from ev3dev2.sound import Sound
 from threading import Thread
-import sys
-from datetime import datetime
 
 m = LargeMotor(OUTPUT_C)
 sound = Sound()
