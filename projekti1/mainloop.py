@@ -1,4 +1,8 @@
-# from projekti1.robot import dancenumberone
+#!/usr/bin/env python3
+from robot import dance1
+from robo2 import dancenumbertwo
+from robo3 import dancenumberthree
+
 from datetime import datetime
 # import os
 
@@ -14,29 +18,29 @@ while True:
     userchoice = input("Make your selection: ")
 
     if userchoice == "1":
-        # tähän kohtaan tulee funktiokutsu
+        dance1()
         with open("my_party_log.txt", "a") as file_object:
-            file_object.write(f"I partied hard on {datetime.now()}.\n")
+            file_object.write("I chilled out at {time}.\n".format(time=datetime.now()))
             file_object.close()
         continue
 
     elif userchoice == "2":
-        # tähän kohtaan tulee funktiokutsu
+        dancenumbertwo()
         with open("my_party_log.txt", "a") as file_object:
-            file_object.write(f"I chilled out at {datetime.now()}.\n")
+            file_object.write("I chilled out at {time}.\n".format(time=datetime.now()))
             file_object.close()
         continue
 
     elif userchoice == "3":
-        # tähän kohtaan tulee funktiokutsu
+        dancenumberthree()
         with open("my_party_log.txt", "a") as file_object:
-            file_object.write(f"I went to the afterparty at {datetime.now()}.\n")
+            file_object.write("I went to the afterparty at {time}.\n".format(time=datetime.now()))
             file_object.close()
         continue
 
     elif userchoice == "4":
         with open("my_party_log.txt", "a") as file_object:
-            file_object.write(f"I left the party on {datetime.now()}.\n")
+            file_object.write("I left the party on {time}.\n".format(time=datetime.now()))
             file_object.close()
  #          os.system("scp my_party_log.txt käyttäjä@koneennimi:/tiedostopolku
  #          os.system("rm my_party_log.txt -f")
