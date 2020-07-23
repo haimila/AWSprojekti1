@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 from robot import dance1
-from robo2 import dancenumbertwo
-from robo3 import dancenumberthree
+from robo2 import dance2
+from robo3 import dance3
 
 from datetime import datetime
-# import os
+import os
 
 while True:
-
+    os.system("rm my_party_log.txt -f")
     print("Welcome to the Party Bot!")
     print("What is your current party mood?\n")
     print("1. I want to party hard!")
@@ -18,21 +18,23 @@ while True:
     userchoice = input("Make your selection: ")
 
     if userchoice == "1":
-        dance1()
+        while True:
+            dance1()
+            break
         with open("my_party_log.txt", "a") as file_object:
-            file_object.write("I chilled out at {time}.\n".format(time=datetime.now()))
+            file_object.write("I partied hard at {time}.\n".format(time=datetime.now()))
             file_object.close()
         continue
 
     elif userchoice == "2":
-        dancenumbertwo()
+        dance2()
         with open("my_party_log.txt", "a") as file_object:
             file_object.write("I chilled out at {time}.\n".format(time=datetime.now()))
             file_object.close()
         continue
 
     elif userchoice == "3":
-        dancenumberthree()
+        dance3()
         with open("my_party_log.txt", "a") as file_object:
             file_object.write("I went to the afterparty at {time}.\n".format(time=datetime.now()))
             file_object.close()
@@ -42,8 +44,7 @@ while True:
         with open("my_party_log.txt", "a") as file_object:
             file_object.write("I left the party on {time}.\n".format(time=datetime.now()))
             file_object.close()
- #          os.system("scp my_party_log.txt käyttäjä@koneennimi:/tiedostopolku
- #          os.system("rm my_party_log.txt -f")
+
         break
 
     else:
