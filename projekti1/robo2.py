@@ -4,6 +4,7 @@ from ev3dev2.sound import Sound
 from threading import Thread
 
 m = LargeMotor(OUTPUT_C)
+n = LargeMotor(OUTPUT_B)
 sound = Sound()
 
 tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
@@ -16,18 +17,17 @@ def dance2():
         def tank_driving1():
 
             while alt_thread.is_alive() == True:
-                # drive in a turn for 5 rotations of the outer motor
-                # the first two parameters can be unit classes or percentages.
-                tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(75), 10)
-
-                # drive in a different turn for 3 seconds
-                tank_drive.on_for_seconds(SpeedPercent(60), SpeedPercent(30), 3)
+                m.on_for_seconds(-28, 1)
+                n.on_for_seconds(-28, 1)
+                n.on_for_seconds(28, 1)
+                m.on_for_seconds(28, 1)
 
         alt_thread = Thread(target=soundbyte1)
 
         alt_thread.start()
         tank_driving1()
         alt_thread.join()
+
 
 
 

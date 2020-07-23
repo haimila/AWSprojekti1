@@ -1,12 +1,13 @@
 # #!/usr/bin/env python3
-from ev3dev2.motor import LargeMotor, OUTPUT_B, OUTPUT_C, SpeedPercent, MoveTank
+from ev3dev2.motor import LargeMotor, OUTPUT_B, OUTPUT_C, SpeedPercent, MoveTank, Motor, OUTPUT_A, SpeedRPM
 from ev3dev2.sound import Sound
 from threading import Thread
+import time
 
 m = LargeMotor(OUTPUT_C)
+n = LargeMotor(OUTPUT_B)
+p = Motor(OUTPUT_A)
 sound = Sound()
-
-tank_drive = MoveTank(OUTPUT_B, OUTPUT_C)
 
 def dance1():
 
@@ -16,18 +17,39 @@ def dance1():
         def tank_driving1():
 
             while alt_thread.is_alive() == True:
-                # drive in a turn for 5 rotations of the outer motor
-                # the first two parameters can be unit classes or percentages.
-                tank_drive.on_for_rotations(SpeedPercent(50), SpeedPercent(75), 10)
 
-                # drive in a different turn for 3 seconds
-                tank_drive.on_for_seconds(SpeedPercent(60), SpeedPercent(30), 3)
+                def square_drive():
+                    p.run_forever()
+                    edge_length_drive_time_s = 2.0
+                    drive_straight(m, n, edge_length_drive_time_s)
+                    turn_90(m, n)
+                    time.sleep(0.1)
+                    p.stop()
+
+                def drive_straight(left_motor, right_motor, time_s):
+                    left_motor.run_forever(speed_sp=1000)
+                    right_motor.run_forever(speed_sp=1000)
+                    time.sleep(time_s)
+                    left_motor.stop(stop_action="brake")
+                    right_motor.stop(stop_action="brake")
+
+                def turn_90(n_motor, m_motor):
+                    motor_turns_deg = 486
+                    m.run_to_rel_pos(position_sp=motor_turns_deg, speed_sp=1000)
+                    n.run_to_rel_pos(position_sp=-motor_turns_deg, speed_sp=1000)
+                    m.wait_while(Motor.STATE_RUNNING)
+                    n.wait_while(Motor.STATE_RUNNING)
+
+                square_drive()
+
 
         alt_thread = Thread(target=soundbyte1)
 
         alt_thread.start()
         tank_driving1()
         alt_thread.join()
+
+
 
 
 
