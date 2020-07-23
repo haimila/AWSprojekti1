@@ -6,8 +6,9 @@ from robo3 import dance3
 from datetime import datetime
 import os
 
+os.system("rm my_party_log.txt -f")
+
 while True:
-    os.system("rm my_party_log.txt -f")
     print("Welcome to the Party Bot!")
     print("What is your current party mood?\n")
     print("1. I want to party hard!")
@@ -41,6 +42,7 @@ while True:
         continue
 
     elif userchoice == "4":
+        print("Thank you for partying!")
         with open("my_party_log.txt", "a") as file_object:
             file_object.write("I left the party on {time}.\n".format(time=datetime.now()))
             file_object.close()
