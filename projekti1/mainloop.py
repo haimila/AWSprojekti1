@@ -5,8 +5,10 @@ from robo3 import dance3
 
 from datetime import datetime
 import os
-
+# poistaa jo olemassa olevan login, jos sellainen on
 os.system("rm my_party_log.txt -f")
+# käyttäjän input-luuppi, joka kutsuu inputin pohjalta funktiot muista moduleista
+# valinta kirjoittaa lokiin sen toiminnon ja timestampin, jota on käytetty
 
 while True:
     print("Welcome to the Party Bot!")

@@ -4,20 +4,23 @@ from ev3dev2.sound import Sound
 from threading import Thread
 import time
 
+# Lego EV3-muuttujat
 m = LargeMotor(OUTPUT_C)
 n = LargeMotor(OUTPUT_B)
 p = Motor(OUTPUT_A)
 sound = Sound()
 
+# Pääfunktio, jota kutsutaan mainloopissa
 def dance1():
-
+        # äänitiedosto, joka määritellään myöhemmin toiseksi threadiksi
         def soundbyte1():
             sound.play_file('PartyHardCut.wav', volume=100, play_type=0)
 
+        # robotin ajaminen, toimii luupilla niin pitkään kun toinen threadi pyörii
         def tank_driving1():
 
             while alt_thread.is_alive() == True:
-
+                # prototyyppi ajosta funktiona, kopioitu legon omasta ohjeesta
                 def square_drive():
                     p.run_forever()
                     edge_length_drive_time_s = 2.0
@@ -42,9 +45,9 @@ def dance1():
 
                 square_drive()
 
-
+        # soundbyte-funktiosta tehdään oma threadinsa:
         alt_thread = Thread(target=soundbyte1)
-
+        # suoritetaan järjestyksessä uusin thread, robotin ajo, ja threadin lopetus
         alt_thread.start()
         tank_driving1()
         alt_thread.join()
